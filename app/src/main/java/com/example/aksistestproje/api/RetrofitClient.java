@@ -1,13 +1,12 @@
 package com.example.aksistestproje.api;
 
-import org.json.JSONObject;
-
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitClient {
 
     private static RetrofitClient instance = null;
+
     private ApiService myApi;
 
 

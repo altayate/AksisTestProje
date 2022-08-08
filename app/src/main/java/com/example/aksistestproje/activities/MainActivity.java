@@ -42,12 +42,12 @@ public class MainActivity extends AppCompatActivity {
     EditText editText;
     CharacterRepo characterRepo;
     MainAdapter adapter;
+    MainViewModel mainViewModel;
     private ProgressBar spinner;
     private boolean isLoading = false;
     private int limit = 20;
     private int offset = 20;
     private boolean isSearched = false;
-    MainViewModel mainViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
         clearText = findViewById(R.id.clearText_imageView);
 
 
-
-
         recyclerView.addOnScrollListener(new PaginationScrollListener(gridLayoutManager) {
             @Override
             protected void loadMoreItems() {
@@ -92,8 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     spinner.setVisibility(View.VISIBLE);
                     isLoading = true;
                     mainViewModel.loadSearch(editText.getText().toString());
-                }
-                else if (gridLayoutManager.getItemCount()%limit!=0){
+                } else if (gridLayoutManager.getItemCount() % limit != 0) {
                     spinner.setVisibility(View.INVISIBLE);
                 }
             }
@@ -103,7 +100,6 @@ public class MainActivity extends AppCompatActivity {
                 return isLoading;
             }
         });
-
 
 
         gridOn.setOnClickListener(e -> {

@@ -19,11 +19,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FavoritesActivity extends AppCompatActivity {
-    private List<MarvelCharacter> marvelCharacters = new ArrayList<>();
     SwipeRefreshLayout swipeRefreshLayout;
     RecyclerView recyclerView;
     ImageView backButton;
     FavoritesViewModel favoritesViewModel;
+    private List<MarvelCharacter> marvelCharacters = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,7 @@ public class FavoritesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(adapter);
 
-        backButton.setOnClickListener(e->onBackPressed());
+        backButton.setOnClickListener(e -> onBackPressed());
 
         favoritesViewModel = new ViewModelProvider(this).get(FavoritesViewModel.class);
 

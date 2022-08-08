@@ -4,13 +4,12 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public abstract class PaginationScrollListener extends RecyclerView.OnScrollListener {
     private GridLayoutManager layoutManager;
 
-    public PaginationScrollListener(GridLayoutManager gridLayoutManager){
+    public PaginationScrollListener(GridLayoutManager gridLayoutManager) {
         this.layoutManager = gridLayoutManager;
     }
 
@@ -26,11 +25,12 @@ public abstract class PaginationScrollListener extends RecyclerView.OnScrollList
 
         Log.d("onScrolled", "visibleItemCount: " + visibleItemCount + " maxItemCount: " + maxItemCount + " firstVisible: " + firstVisibleItemPosition);
 
-        if (visibleItemCount+firstVisibleItemPosition == maxItemCount){
+        if (visibleItemCount + firstVisibleItemPosition == maxItemCount) {
             loadMoreItems();
         }
     }
 
     protected abstract void loadMoreItems();
+
     public abstract boolean isLoading();
 }

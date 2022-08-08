@@ -91,8 +91,7 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
                     });
 
             Log.d("TAG", "onBindViewHolder: " + data.get(position).getId());
-        }
-        else{
+        } else {
             data.remove(position);
         }
     }
@@ -104,17 +103,16 @@ public class FavoritesAdapter extends RecyclerView.Adapter<FavoritesAdapter.Favo
     }
 
 
-
-
     @Override
     public int getItemCount() {
         return data.size();
     }
 
-    public class FavoritesViewHolder extends RecyclerView.ViewHolder{
+    public class FavoritesViewHolder extends RecyclerView.ViewHolder {
         TextView characterName, characterSeriesCount;
         ImageView characterImage, filledHeart, emptyHeart;
         CardView cardView;
+
         public FavoritesViewHolder(@NonNull View itemView) {
             super(itemView);
 

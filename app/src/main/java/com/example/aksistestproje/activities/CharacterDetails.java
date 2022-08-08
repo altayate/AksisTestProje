@@ -33,12 +33,12 @@ import java.util.Map;
 
 public class CharacterDetails extends AppCompatActivity implements View.OnClickListener {
 
+    public MarvelCharacter character;
     TextView nameTextView;
     ImageView backButton;
     ImageView characterImageView;
     FloatingActionButton likeButton, dislikeButton;
     CharacterRepo characterRepo;
-    public MarvelCharacter character;
     List<String> groupList, childList;
     Map<String, List<String>> myCollection;
     ExpandableListView expandableListView;

@@ -1,18 +1,14 @@
 package com.example.aksistestproje.model;
 
 import androidx.room.Entity;
-import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-
-import com.example.aksistestproje.data.MarvelComics;
-import com.example.aksistestproje.data.MarvelSeries;
-import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 @Entity(tableName = "characters_table")
 public class MarvelCharacter implements Serializable {
+
     private String name;
     @PrimaryKey
     private int id;

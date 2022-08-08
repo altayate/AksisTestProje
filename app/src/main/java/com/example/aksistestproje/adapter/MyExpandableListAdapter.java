@@ -22,11 +22,12 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     private List<String> groupList;
 
     public MyExpandableListAdapter(Context context, List<String> groupList,
-                                   Map<String, List<String>> myCollection){
+                                   Map<String, List<String>> myCollection) {
         this.context = context;
         this.myCollection = myCollection;
         this.groupList = groupList;
     }
+
     @Override
     public int getGroupCount() {
         return myCollection.size();
@@ -65,7 +66,7 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
         String name = getGroup(i).toString();
-        if (view == null){
+        if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_group, null);
         }
@@ -78,14 +79,14 @@ public class MyExpandableListAdapter extends BaseExpandableListAdapter {
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
         String name = getChild(i, i1).toString();
-        if (view == null){
+        if (view == null) {
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = inflater.inflate(R.layout.list_item, null);
         }
         TextView item = view.findViewById(R.id.expandedListItem);
         item.setText(name);
 
-        view.setOnClickListener(e->{
+        view.setOnClickListener(e -> {
             ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
             ClipData clip = ClipData.newPlainText("label", item.getText());
             clipboard.setPrimaryClip(clip);

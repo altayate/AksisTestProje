@@ -91,16 +91,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         int isLiked = db.characterDao().getCharacterCount(data.get(position).getId());
         Log.d("room", "onCreate: " + isLiked);
 
-        if (isLiked == 1){
+        if (isLiked == 1) {
             holder.emptyHeart.setVisibility(View.GONE);
             holder.filledHeart.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             holder.filledHeart.setVisibility(View.GONE);
             holder.emptyHeart.setVisibility(View.VISIBLE);
         }
 
-        holder.cardView.setOnClickListener(e->{
+        holder.cardView.setOnClickListener(e -> {
             Bundle bundle = new Bundle();
             bundle.putSerializable("character", data.get(position));
             Intent intent = new Intent(context, CharacterDetails.class);
@@ -109,9 +108,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
         });
 
 
-
         Log.d("image", "onBindViewHolder: " + data.get(position).getImagePath());
-
 
 
         Glide.with(context)
