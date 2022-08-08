@@ -26,12 +26,10 @@ public class MainViewModel extends ViewModel {
     public MainViewModel() {
         marvelCharacters = new ArrayList<>();
         marvelCharactersLive = new MutableLiveData<>();
-        setCall(this.offset);
-
     }
 
-    public void setCall(int offset){
-        call = new RetrofitClient().getMyApi().getBunch(limit, offset);
+    public void setCall(){
+        call = new RetrofitClient().getMyApi().getBunch(limit, this.offset);
         this.offset += limit;
     }
 
@@ -81,14 +79,23 @@ public class MainViewModel extends ViewModel {
         String searchText = search;
         specificCall = new RetrofitClient().getMyApi().searchCharacters(searchText, limit, offset);
         setMarvelCharacters(specificCall);
-        setCall(offset);
+        setCall();
+    }
+
+    public void loadFirstPage(){
+        isSearched = false;
+        isLoading = true;
+        call = new RetrofitClient().getMyApi().getBunch(limit, 0);
+        setMarvelCharacters(call);
+        offset += limit;
     }
 
     public void loadNextPage() {
+        if (isSearched)
+            offset=0;
         isSearched = false;
         isLoading = true;
-        call.cancel();
-        setCall(offset);
+        setCall();
         setMarvelCharacters(call);
     }
 

@@ -70,10 +70,8 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.MyViewHolder> 
     }
 
     public void addAll(List<MarvelCharacter> marvelCharacter) {
-        for (MarvelCharacter result : marvelCharacter) {
-            add(result);
-        }
-        notifyDataSetChanged();
+        data.clear();
+        data.addAll(marvelCharacter);
     }
 
     public void clearData() {

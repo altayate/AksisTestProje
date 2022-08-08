@@ -18,7 +18,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.aksistestproje.R;
 import com.example.aksistestproje.adapter.MainAdapter;
 import com.example.aksistestproje.adapter.PaginationScrollListener;
-import com.example.aksistestproje.api.RetrofitClient;
 import com.example.aksistestproje.data.MarvelObject;
 import com.example.aksistestproje.model.MarvelCharacter;
 import com.example.aksistestproje.room.CharacterRepo;
@@ -52,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
         setContentView(R.layout.activity_main);
 
         mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
@@ -62,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
         gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
         characterRepo = new CharacterRepo(this.getApplication());
         adapter = new MainAdapter(this, getApplication());
-        call = new RetrofitClient().getMyApi().getBunch(limit, adapter.getItemCount());
 
         editText = findViewById(R.id.editTextTextPersonName);
         mainCardView = findViewById(R.id.mainCardView);
@@ -71,14 +68,14 @@ public class MainActivity extends AppCompatActivity {
         search = findViewById(R.id.search_imageButton);
         recyclerView = findViewById(R.id.recyclerViewMain);
 
-        mainViewModel.setMarvelCharacters(call);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(gridLayoutManager);
         spinner = findViewById(R.id.progressBar1);
         goToFavorites = findViewById(R.id.goToFavorites_imageView);
         clearText = findViewById(R.id.clearText_imageView);
 
-
+        mainViewModel.marvelCharacters.clear();
+        mainViewModel.loadFirstPage();
         recyclerView.addOnScrollListener(new PaginationScrollListener(gridLayoutManager) {
             @Override
             protected void loadMoreItems() {
@@ -118,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
                 mainViewModel.marvelCharacters.clear();
                 adapter.clearData();
                 mainViewModel.offset = 0;
-                call.cancel();
                 mainViewModel.loadSearch(editText.getText().toString());
             }
         });
